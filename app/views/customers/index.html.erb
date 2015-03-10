@@ -1,0 +1,36 @@
+<h1>All of the Customers</h1>
+<p class="alert"><%= alert %></p>
+<p id="notice"><%= notice %></p>
+
+
+<%= link_to 'Add new Customer', new_customer_path %>
+
+<table border="1">
+  <thead>
+    <tr>
+      <th>Customer ID</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Address</th>
+      <th>City</th>
+      <th>State/Province</th>
+      <th>Country</th>
+      <th colspan="2">Support Rep.</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @customers.each do |customer| %>
+        <tr>
+          <td><%= customer.CustomerId %></td>
+          <td><%= customer.FirstName %></td>
+          <td><%= customer.LastName %></td>
+          <td><%= customer.Address %></td>
+          <td><%= customer.City %></td>
+          <td><%= customer.State %></td>
+          <td><%= customer.Country %></td>
+          <td><%= customer.employee.FirstName + ' ' + customer.employee.LastName %></td>
+        </tr>
+    <% end %>
+  </tbody>
+</table>
