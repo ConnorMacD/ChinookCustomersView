@@ -6,4 +6,6 @@ class CustomersController < ApplicationController
   def index
     @customers = Customer.limit(50)
   end
+
+
 end

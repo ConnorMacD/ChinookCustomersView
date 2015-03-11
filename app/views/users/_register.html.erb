@@ -1,0 +1,22 @@
+<%= form_for(@user) do |f| %>
+	<div>
+		<%= f.label :Username %><br>
+		<%= f.text_field :Username %>
+	</div>
+
+	<div>
+		<%= f.label :Password %><br>
+		<%= f.text_field :Password %>
+	</div>
+
+	<div>
+		<label for="user_EmployeeId">Employee</label><br>
+		<%= f.collection_select :EmployeeId, @employees, :EmployeeId, :name, include_blank: true %>
+	</div>
+
+	<br>
+
+	<div class="actions">
+		<%= f.submit %>
+	</div>
+<% end %>

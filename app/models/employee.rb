@@ -4,4 +4,9 @@ class Employee < ActiveRecord::Base
 
     has_many :customers, :class_name => 'Customer'
     belongs_to :employee, :class_name => 'Employee', :foreign_key => :ReportsTo
+    has_many :users, :class_name => 'User', :foreign_key => :EmployeeId
+    
+	def name
+		"#{self.FirstName} #{self.LastName}"
+	end
 end
