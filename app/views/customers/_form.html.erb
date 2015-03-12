@@ -1,57 +1,72 @@
-<p id="notice"><%=notice%></p>
-
-<%= form_for(@customer) do |f| %>
-    <div>
-      <%= f.label :FirstName %> <br/>
-      <%= f.text_field :FirstName %>
+<div class="container">
+  <div class="row">
+    <div class="large-10 columns">
+      <h1><%= type %> User</h1>
     </div>
-
-    <div>
-      <%= f.label :LastName %> <br/>
-      <%= f.text_field :LastName %>
+    <div class="large-2 columns">
+      <ul class="right button-group">
+        <li class="button"><%= link_to 'Back to Customers', customers_path, {:style=>'color:white'} %></li>
+      </ul>
     </div>
+  </div>
 
-    <div>
-      <%= f.label :Address %> <br/>
-      <%= f.text_field :Address %>
+  <div class="row">
+    <div class="large-6 columns large-centered">
+      <p id="notice"><%=notice%></p>
+      <%= form_for(@customer) do |f| %>
+        <div>
+          <%= f.label :FirstName %> <br/>
+          <%= f.text_field :FirstName %>
+        </div>
+
+        <div>
+          <%= f.label :LastName %> <br/>
+          <%= f.text_field :LastName %>
+        </div>
+
+        <div>
+          <%= f.label :Address %> <br/>
+          <%= f.text_field :Address %>
+        </div>
+
+        <div>
+          <%= f.label :City %> <br/>
+          <%= f.text_field :City %>
+        </div>
+
+        <div>
+          <%= f.label :State %> <br/>
+          <%= f.text_field :State %>
+        </div>
+
+        <div>
+          <%= f.label :Country %> <br/>
+          <%= f.text_field :Country %>
+        </div>
+
+        <div>
+          <%= f.label :PostalCode %> <br/>
+          <%= f.text_field :PostalCode %>
+        </div>
+
+        <div>
+          <%= f.label :Phone %> <br/>
+          <%= f.text_field :Phone %>
+        </div>
+
+        <div>
+          <%= f.label :Email %> <br/>
+          <%= f.text_field :Email %>
+        </div>
+
+        <%= f.hidden_field :SupportRepId, :value => session[:emp_id] %>
+
+        <br>
+
+        <div class="actions button">
+          <%= f.submit %>
+        </div>
+      <%end%>
     </div>
-
-    <div>
-      <%= f.label :City %> <br/>
-      <%= f.text_field :City %>
-    </div>
-
-    <div>
-      <%= f.label :State %> <br/>
-      <%= f.text_field :State %>
-    </div>
-
-    <div>
-      <%= f.label :Country %> <br/>
-      <%= f.text_field :Country %>
-    </div>
-
-    <div>
-      <%= f.label :PostalCode %> <br/>
-      <%= f.text_field :PostalCode %>
-    </div>
-
-    <div>
-      <%= f.label :Phone %> <br/>
-      <%= f.text_field :Phone %>
-    </div>
-
-    <div>
-      <%= f.label :Email %> <br/>
-      <%= f.text_field :Email %>
-    </div>
-
-    <%= f.hidden_field :SupportRepId, :value => session[:emp_id] %>
-
-    <br>
-
-    <div class="actions">
-      <%= f.submit %>
-    </div>
-
-<%end%>
+  </div>
+</div>

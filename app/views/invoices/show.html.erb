@@ -77,8 +77,8 @@
         <% for i in 0..@totals.length-1 %>
         {
             value: <%= @totals[i] %>,
-            color:"#F7464A",
-            highlight: "#FF5A5E",
+            color:"#<%='%06x' % (rand * 0xffffff)%>",
+            highlight: "#<%='%06x' % (rand * 0xffffff)%>",
             label: "Purchase"
         }<% if i = @totals.length-1 %>
               ,
