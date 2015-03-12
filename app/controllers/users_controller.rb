@@ -7,9 +7,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      #session[:userId] = @user.userId
-      #session[:empId] = @user.employeeId
-      redirect_to session_path, notice: 'Account created!'
+      redirect_to customers_path, notice: 'Account created!'
     else
       render :new
     end

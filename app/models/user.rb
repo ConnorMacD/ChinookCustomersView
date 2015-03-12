@@ -9,15 +9,6 @@ class User < ActiveRecord::Base
 
     belongs_to :employee, :class_name => 'Employee', :foreign_key => :employeeId
 
-    def self.authenticate(username, password)
-      user = find_by_username(username)
-      if user && user.password == BCrypt::Engine.hash_secret(password, user.password_salt)
-        user
-      else
-        nil
-      end
-    end
-
     def encrypt_password
       if self.password.present?
         BCrypt::Engine.cost = 13
