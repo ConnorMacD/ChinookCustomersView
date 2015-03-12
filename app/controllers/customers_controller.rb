@@ -17,6 +17,26 @@ class CustomersController < ApplicationController
     end
   end
 
+  def edit
+  	@customer = Customer.find(params[:id])
+  end
+
+  def update
+  	@customer = Customer.find(params[:id])
+  	@customer.SupportRepId = session[:emp_id]
+  	if @customer.update(cust_params)
+  	  redirect_to customers_path, notice: 'Customer updated!'
+  	else 
+  	  render :edit
+  	end
+  end
+
+  def destroy
+  	@customer = Customer.find(params[:id])
+  	@customer.destroy
+
+  	redirect_to customers_path, notice: 'Customer deleted!'
+  end
 
   private
   def cust_params

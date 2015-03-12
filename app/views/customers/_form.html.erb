@@ -1,3 +1,5 @@
+<p id="notice"><%=notice%></p>
+
 <%= form_for(@customer) do |f| %>
     <div>
       <%= f.label :FirstName %> <br/>
@@ -44,7 +46,7 @@
       <%= f.text_field :Email %>
     </div>
 
-    <%= f.hidden_field :SupportRepId, :value => 1 %>
+    <%= f.hidden_field :SupportRepId, :value => session[:emp_id] %>
 
     <br>
 

@@ -16,7 +16,7 @@
       <th>City</th>
       <th>State/Province</th>
       <th>Country</th>
-      <th colspan="2">Support Rep.</th>
+      <th>Support Rep.</th>
     </tr>
   </thead>
 
@@ -31,6 +31,8 @@
           <td><%= customer.State %></td>
           <td><%= customer.Country %></td>
           <td><%= customer.employee.FirstName + ' ' + customer.employee.LastName %></td>
+          <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
+          <td><%= link_to 'Delete', customer, method: :delete, data: {confirm: 'Are you sure?'}%></td>
         </tr>
     <% end %>
   </tbody>
