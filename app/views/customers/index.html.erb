@@ -1,40 +1,116 @@
-<h1>All of the Customers</h1>
-<p class="alert"><%= alert %></p>
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="row">
+    <div class="large-7 columns">
+      <h1>All of the Customers</h1>
+    </div>
+    <div class="large-5 columns">
+      <ul class="right button-group">
+        <li><a href="http://localhost:3000/customers/new" class="button">Add New Customer</a></li>
+        <li><a href="http://localhost:3000/log_out" class="button">Sign Out</a></li>
+      </ul>
+    </div>
+  </div>
 
+  <div class="row">
+    <div class="large-12 columns">
+      <div>
+        <p class="alert"><%= alert %></p>
+        <p id="notice"><%= notice %></p>
+      </div>
 
-<%= link_to 'Add new Customer', new_customer_path %>
-<%= link_to 'Sign out', log_out_path %>
+      <hr/>
+    </div>
+  </div>
 
-<table border="1">
-  <thead>
-    <tr>
-      <th>Customer ID</th>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>Address</th>
-      <th>City</th>
-      <th>State/Province</th>
-      <th>Country</th>
-      <th>Support Rep.</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @customers.each do |customer| %>
+  <div class="row">
+    <div class="large-12 columns">
+      <table>
+        <thead>
         <tr>
-          <td><%= customer.CustomerId %></td>
-          <td><%= customer.FirstName %></td>
-          <td><%= customer.LastName %></td>
-          <td><%= customer.Address %></td>
-          <td><%= customer.City %></td>
-          <td><%= customer.State %></td>
-          <td><%= customer.Country %></td>
-          <td><%= customer.employee.FirstName + ' ' + customer.employee.LastName %></td>
-          <td><%= link_to 'View Invoices', invoice_path(customer)%></td>
-          <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
-          <td><%= link_to 'Delete', customer, method: :delete, data: {confirm: 'Are you sure?'}%></td>
+          <th>Actions</th>
+          <th>Customer ID</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Address</th>
+          <th>City</th>
+          <th>State/Province</th>
+          <th>Country</th>
+          <th>Support Rep.</th>
         </tr>
-    <% end %>
-  </tbody>
-</table>
+        </thead>
+
+        <tbody>
+        <% @customers.each do |customer| %>
+            <tr>
+              <td><%= link_to 'Edit', edit_customer_path(customer) %> <br/>
+                <%= link_to 'Delete', customer, method: :delete, data: {confirm: 'Are you sure?'}%> <br/>
+              <%= link_to 'Invoices', invoice_path(customer)%></td>
+              <td><%= customer.CustomerId %></td>
+              <td><%= customer.FirstName %></td>
+              <td><%= customer.LastName %></td>
+              <td><%= customer.Address %></td>
+              <td><%= customer.City %></td>
+              <td><%= customer.State %></td>
+              <td><%= customer.Country %></td>
+              <td><%= customer.employee.FirstName + ' ' + customer.employee.LastName %></td>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <footer class="row">
+    <div class="large-12 columns">
+      <hr/>
+      <div class="row">
+        <div class="large-6 columns">
+          <p>© 2015 Connor MacDonald</p>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+</div>
+
+
+<!--<h1>All of the Customers</h1>-->
+<!--<p class="alert"><%= alert %></p>-->
+<!--<p id="notice"><%= notice %></p>-->
+
+
+<!--<%= link_to 'Add new Customer', new_customer_path %>-->
+<!--<%= link_to 'Sign out', log_out_path %>-->
+
+<!--<table border="1">-->
+  <!--<thead>-->
+    <!--<tr>-->
+      <!--<th>Customer ID</th>-->
+      <!--<th>First Name</th>-->
+      <!--<th>Last Name</th>-->
+      <!--<th>Address</th>-->
+      <!--<th>City</th>-->
+      <!--<th>State/Province</th>-->
+      <!--<th>Country</th>-->
+      <!--<th>Support Rep.</th>-->
+    <!--</tr>-->
+  <!--</thead>-->
+
+  <!--<tbody>-->
+    <!--<% @customers.each do |customer| %>-->
+        <!--<tr>-->
+          <!--<td><%= customer.CustomerId %></td>-->
+          <!--<td><%= customer.FirstName %></td>-->
+          <!--<td><%= customer.LastName %></td>-->
+          <!--<td><%= customer.Address %></td>-->
+          <!--<td><%= customer.City %></td>-->
+          <!--<td><%= customer.State %></td>-->
+          <!--<td><%= customer.Country %></td>-->
+          <!--<td><%= customer.employee.FirstName + ' ' + customer.employee.LastName %></td>-->
+          <!--<td><%= link_to 'View Invoices', invoice_path(customer)%></td>-->
+          <!--<td><%= link_to 'Edit', edit_customer_path(customer) %></td>-->
+          <!--<td><%= link_to 'Delete', customer, method: :delete, data: {confirm: 'Are you sure?'}%></td>-->
+        <!--</tr>-->
+    <!--<% end %>-->
+  <!--</tbody>-->
+<!--</table>-->

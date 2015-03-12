@@ -4,7 +4,12 @@ class CustomersController < ApplicationController
   end
 
   def index
-    @customers = Customer.where(SupportRepId: session[:emp_id]).limit(50)
+
+    if session[:emp_id] != nil && session[:user_id] != nil
+      @customers = Customer.where(SupportRepId: session[:emp_id]).limit(50)
+    else
+      redirect_to log_in_path, notice: 'You must be logged in to continue'
+    end
   end
 
   def create
