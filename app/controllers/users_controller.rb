@@ -6,18 +6,21 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-
     if @user.save
-      redirect_to customers_path
+      #session[:userId] = @user.userId
+      #session[:empId] = @user.employeeId
+      redirect_to session_path, notice: 'Account created!'
     else
       render :new
     end
   end
 
 
+
+  #Private Defs for create/edit/new
   private
   def user_params
-    params.require(:user).permit(:Username, :Password, :EmployeeId)
+    params.require(:user).permit(:username, :password, :employeeId)
   end
 
 end

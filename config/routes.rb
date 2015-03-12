@@ -2,6 +2,9 @@ Rails.application.routes.draw do
 
   resources :customers
   resources :users
+  resources :sessions
+
+  get "log_out" => "sessions#destroy", :as => "log_out"
 
   root to: 'customers#index'
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,16 +1,28 @@
 class User < ActiveRecord::Base
 
     self.table_name = 'User'
-    self.primary_key = :UserId
+    self.primary_key = :userId
 
     before_save :encrypt_password
 
-    belongs_to :employee, :class_name => 'Employee', :foreign_key => :EmployeeId
+    validates_uniqueness_of :username
+
+    belongs_to :employee, :class_name => 'Employee', :foreign_key => :employeeId
+
+    def self.authenticate(username, password)
+      user = find_by_username(username)
+      if user && user.password == BCrypt::Engine.hash_secret(password, user.password_salt)
+        user
+      else
+        nil
+      end
+    end
 
     def encrypt_password
-      if self.Password.present?
+      if self.password.present?
         BCrypt::Engine.cost = 13
-        self.Password = BCrypt::Password.create(self.Password.to_s)
+        self.password_salt = BCrypt::Engine.generate_salt
+        self.password = BCrypt::Engine.hash_secret(self.password, self.password_salt)
       end
     end
 end

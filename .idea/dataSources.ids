@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - Chinook@localhost" uuid="976a5957-9209-415c-86a3-2fb1b6ab4756">
+    <database-info product="MySQL" version="5.5.41-0+wheezy1" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.34 ( Revision: jess.balint@oracle.com-20141014163213-wqbwpf1ok2kvo1om )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact"/>
+    <schema name="" catalog="Chinook"/>
+    <table name="Album" schema="" catalog="Chinook" type="TABLE">
+      <column name="AlbumId" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="Title" sqlType="VARCHAR" precision="160" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ArtistId" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="AlbumId"/>
+      <foreign-key name="FK_AlbumArtistId" columns="ArtistId" ref-table="Artist" ref-schema="" ref-catalog="Chinook" ref-columns="ArtistId" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_TrackAlbumId" table="Track" schema="" catalog="Chinook" columns="AlbumId"/>
+      <index name="IFK_AlbumArtistId" unique="false" columns="ArtistId"/>
+    </table>
+    <table name="Artist" schema="" catalog="Chinook" type="TABLE">
+      <column name="ArtistId" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="Name" sqlType="VARCHAR" precision="120" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ArtistId"/>
+      <exported-key name="FK_AlbumArtistId" table="Album" schema="" catalog="Chinook" columns="ArtistId"/>
+    </table>
+    <table name="Customer" schema="" catalog="Chinook" type="TABLE">
+      <column name="CustomerId" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="FirstName" sqlType="VARCHAR" precision="40" scale="0" nullable="false" jdbcType="12"/>
+      <column name="LastName" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="Company" sqlType="VARCHAR" precision="80" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Address" sqlType="VARCHAR" precision="70" scale="0" nullable="true" jdbcType="12"/>
+      <column name="City" sqlType="VARCHAR" precision="40" scale="0" nullable="true" jdbcType="12"/>
+      <column name="State" sqlType="VARCHAR" precision="40" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Country" sqlType="VARCHAR" precision="40" scale="0" nullable="true" jdbcType="12"/>
+      <column name="PostalCode" sqlType="VARCHAR" precision="10" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Phone" sqlType="VARCHAR" precision="24" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Fax" sqlType="VARCHAR" precision="24" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Email" sqlType="VARCHAR" precision="60" scale="0" nullable="false" jdbcType="12"/>
+      <column name="SupportRepId" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="CustomerId"/>
+      <foreign-key name="FK_CustomerSupportRepId" columns="SupportRepId" ref-table="Employee" ref-schema="" ref-catalog="Chinook" ref-columns="EmployeeId" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_InvoiceCustomerId" table="Invoice" schema="" catalog="Chinook" columns="CustomerId"/>
+      <index name="IFK_CustomerSupportRepId" unique="false" columns="SupportRepId"/>
+    </table>
+    <table name="Employee" schema="" catalog="Chinook" type="TABLE">
+      <column name="EmployeeId" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="LastName" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="FirstName" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="Title" sqlType="VARCHAR" precision="30" scale="0" nullable="true" jdbcType="12"/>
+      <column name="ReportsTo" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="BirthDate" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="HireDate" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="Address" sqlType="VARCHAR" precision="70" scale="0" nullable="true" jdbcType="12"/>
+      <column name="City" sqlType="VARCHAR" precision="40" scale="0" nullable="true" jdbcType="12"/>
+      <column name="State" sqlType="VARCHAR" precision="40" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Country" sqlType="VARCHAR" precision="40" scale="0" nullable="true" jdbcType="12"/>
+      <column name="PostalCode" sqlType="VARCHAR" precision="10" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Phone" sqlType="VARCHAR" precision="24" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Fax" sqlType="VARCHAR" precision="24" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Email" sqlType="VARCHAR" precision="60" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="EmployeeId"/>
+      <foreign-key name="FK_EmployeeReportsTo" columns="ReportsTo" ref-table="Employee" ref-schema="" ref-catalog="Chinook" ref-columns="EmployeeId" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_CustomerSupportRepId" table="Customer" schema="" catalog="Chinook" columns="SupportRepId"/>
+      <exported-key name="FK_EmployeeReportsTo" table="Employee" schema="" catalog="Chinook" columns="ReportsTo"/>
+      <exported-key name="User_ibfk_2" table="User" schema="" catalog="Chinook" columns="EmployeeId"/>
+      <index name="IFK_EmployeeReportsTo" unique="false" columns="ReportsTo"/>
+    </table>
+    <table name="Genre" schema="" catalog="Chinook" type="TABLE">
+      <column name="GenreId" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="Name" sqlType="VARCHAR" precision="120" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="GenreId"/>
+      <exported-key name="FK_TrackGenreId" table="Track" schema="" catalog="Chinook" columns="GenreId"/>
+    </table>
+    <table name="Invoice" schema="" catalog="Chinook" type="TABLE">
+      <column name="InvoiceId" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="CustomerId" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="InvoiceDate" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="BillingAddress" sqlType="VARCHAR" precision="70" scale="0" nullable="true" jdbcType="12"/>
+      <column name="BillingCity" sqlType="VARCHAR" precision="40" scale="0" nullable="true" jdbcType="12"/>
+      <column name="BillingState" sqlType="VARCHAR" precision="40" scale="0" nullable="true" jdbcType="12"/>
+      <column name="BillingCountry" sqlType="VARCHAR" precision="40" scale="0" nullable="true" jdbcType="12"/>
+      <column name="BillingPostalCode" sqlType="VARCHAR" precision="10" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Total" sqlType="DECIMAL" precision="10" scale="2" nullable="false" jdbcType="3"/>
+      <primary-key name="PRIMARY" columns="InvoiceId"/>
+      <foreign-key name="FK_InvoiceCustomerId" columns="CustomerId" ref-table="Customer" ref-schema="" ref-catalog="Chinook" ref-columns="CustomerId" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_InvoiceLineInvoiceId" table="InvoiceLine" schema="" catalog="Chinook" columns="InvoiceId"/>
+      <index name="IFK_InvoiceCustomerId" unique="false" columns="CustomerId"/>
+    </table>
+    <table name="InvoiceLine" schema="" catalog="Chinook" type="TABLE">
+      <column name="InvoiceLineId" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="InvoiceId" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="TrackId" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="UnitPrice" sqlType="DECIMAL" precision="10" scale="2" nullable="false" jdbcType="3"/>
+      <column name="Quantity" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="InvoiceLineId"/>
+      <foreign-key name="FK_InvoiceLineTrackId" columns="TrackId" ref-table="Track" ref-schema="" ref-catalog="Chinook" ref-columns="TrackId" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_InvoiceLineInvoiceId" columns="InvoiceId" ref-table="Invoice" ref-schema="" ref-catalog="Chinook" ref-columns="InvoiceId" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="IFK_InvoiceLineInvoiceId" unique="false" columns="InvoiceId"/>
+      <index name="IFK_InvoiceLineTrackId" unique="false" columns="TrackId"/>
+    </table>
+    <table name="MediaType" schema="" catalog="Chinook" type="TABLE">
+      <column name="MediaTypeId" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="Name" sqlType="VARCHAR" precision="120" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="MediaTypeId"/>
+      <exported-key name="FK_TrackMediaTypeId" table="Track" schema="" catalog="Chinook" columns="MediaTypeId"/>
+    </table>
+    <table name="Playlist" schema="" catalog="Chinook" type="TABLE">
+      <column name="PlaylistId" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="Name" sqlType="VARCHAR" precision="120" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="PlaylistId"/>
+      <exported-key name="FK_PlaylistTrackPlaylistId" table="PlaylistTrack" schema="" catalog="Chinook" columns="PlaylistId"/>
+    </table>
+    <table name="PlaylistTrack" schema="" catalog="Chinook" type="TABLE">
+      <column name="PlaylistId" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="TrackId" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="PlaylistId,TrackId"/>
+      <foreign-key name="FK_PlaylistTrackTrackId" columns="TrackId" ref-table="Track" ref-schema="" ref-catalog="Chinook" ref-columns="TrackId" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_PlaylistTrackPlaylistId" columns="PlaylistId" ref-table="Playlist" ref-schema="" ref-catalog="Chinook" ref-columns="PlaylistId" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="IFK_PlaylistTrackTrackId" unique="false" columns="TrackId"/>
+    </table>
+    <table name="Track" schema="" catalog="Chinook" type="TABLE">
+      <column name="TrackId" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="Name" sqlType="VARCHAR" precision="200" scale="0" nullable="false" jdbcType="12"/>
+      <column name="AlbumId" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="MediaTypeId" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="GenreId" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="Composer" sqlType="VARCHAR" precision="220" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Milliseconds" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="Bytes" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="UnitPrice" sqlType="DECIMAL" precision="10" scale="2" nullable="false" jdbcType="3"/>
+      <primary-key name="PRIMARY" columns="TrackId"/>
+      <foreign-key name="FK_TrackMediaTypeId" columns="MediaTypeId" ref-table="MediaType" ref-schema="" ref-catalog="Chinook" ref-columns="MediaTypeId" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_TrackAlbumId" columns="AlbumId" ref-table="Album" ref-schema="" ref-catalog="Chinook" ref-columns="AlbumId" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_TrackGenreId" columns="GenreId" ref-table="Genre" ref-schema="" ref-catalog="Chinook" ref-columns="GenreId" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_InvoiceLineTrackId" table="InvoiceLine" schema="" catalog="Chinook" columns="TrackId"/>
+      <exported-key name="FK_PlaylistTrackTrackId" table="PlaylistTrack" schema="" catalog="Chinook" columns="TrackId"/>
+      <index name="IFK_TrackAlbumId" unique="false" columns="AlbumId"/>
+      <index name="IFK_TrackGenreId" unique="false" columns="GenreId"/>
+      <index name="IFK_TrackMediaTypeId" unique="false" columns="MediaTypeId"/>
+    </table>
+    <table name="User" schema="" catalog="Chinook" type="TABLE">
+      <column name="UserId" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="Username" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="Password" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="EmployeeId" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="UserId"/>
+      <foreign-key name="User_ibfk_2" columns="EmployeeId" ref-table="Employee" ref-schema="" ref-catalog="Chinook" ref-columns="EmployeeId" update-rule="3" delete-rule="2" deferrability="2"/>
+      <index name="Username" unique="true" columns="Username"/>
+      <index name="employee_user" unique="false" columns="EmployeeId"/>
+    </table>
+  </data-source>
+</component>
