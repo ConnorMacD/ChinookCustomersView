@@ -9,4 +9,8 @@ class Customer < ActiveRecord::Base
 
     belongs_to :employee, :class_name => 'Employee', :foreign_key => :SupportRepId
     has_many :invoices, :class_name => 'Invoice', :foreign_key => :CustomerId
+
+    def name
+      "#{self.FirstName} #{self.LastName}"
+    end
 end
